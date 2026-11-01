@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="abyssBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bef264"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <!-- Abyss Dark Theme Badge -->
+  <rect width="64" height="64" rx="16" fill="#0c1e28"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#abyssBorder)" stroke-width="2.5"/>
+  <!-- Bold high-contrast MD letters for Abyss -->
+  <text x="32" y="34.5" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="31" letter-spacing="-1.5" fill="#f8fafc">M<tspan fill="#bef264">D</tspan></text>
+</svg>

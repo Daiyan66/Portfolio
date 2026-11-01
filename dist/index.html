@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-theme="abyss">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c1e28" />
+    <link id="favicon-tag" rel="icon" type="image/svg+xml" href="/favicon-dark.svg" />
+    <link id="apple-favicon-tag" rel="apple-touch-icon" href="/favicon-dark.svg" />
+    <title>Mohammed Daiyan Portfolio</title>
+    <meta name="description" content="Mohammed Daiyan — Computer Science &amp; Engineering student at NIE Mysore. Full-stack developer building robust backend services with Java &amp; Spring Boot, modern React frontends, and intelligent systems." />
+    <meta name="keywords" content="Mohammed Daiyan, Full-Stack Developer, Spring Boot, React, Java, Mysore, NIE Mysore, Portfolio, Software Engineer" />
+    <meta name="author" content="Mohammed Daiyan" />
+
+    <!-- Immediate theme setter (default to dark theme abyss & dynamic favicon) -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('daiyan-theme');
+          var isLight = (t === 'caramellatte');
+          document.documentElement.dataset.theme = isLight ? 'caramellatte' : 'abyss';
+          var fav = document.getElementById('favicon-tag');
+          if (fav) fav.href = isLight ? '/favicon-light.svg' : '/favicon-dark.svg';
+          var apple = document.getElementById('apple-favicon-tag');
+          if (apple) apple.href = isLight ? '/favicon-light.svg' : '/favicon-dark.svg';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.content = isLight ? '#faf5ed' : '#0c1e28';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'abyss';
+        }
+      })();
+    </script>
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mohammed Daiyan Portfolio" />
+    <meta property="og:description" content="Computer Science student at NIE Mysore specializing in Java, Spring Boot, and modern React development." />
+    <meta property="og:image" content="/Daiyan.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/assets/index-C2pD3UFY.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-xEPqt5nc.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
