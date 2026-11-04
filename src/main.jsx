@@ -562,18 +562,16 @@ export default function App() {
     );
   };
 
-  // Helper to construct mailto link with optional subject & body
-  const getMailtoUrl = (subject = '', body = '') => {
-    let url = `mailto:daiyan63633@gmail.com`;
-    const params = [];
-    if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
-    if (body) params.push(`body=${encodeURIComponent(body)}`);
-    if (params.length > 0) url += `?${params.join('&')}`;
+  // Helper to construct Gmail Compose URL (Option B: official clean fs=1 full compose)
+  const getGmailComposeUrl = (subject = '', body = '') => {
+    let url = `https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com`;
+    if (subject) url += `&su=${encodeURIComponent(subject)}`;
+    if (body) url += `&body=${encodeURIComponent(body)}`;
     return url;
   };
 
-  const openMailto = (subject = '', body = '') => {
-    window.location.href = getMailtoUrl(subject, body);
+  const openGmailCompose = (subject = '', body = '') => {
+    window.open(getGmailComposeUrl(subject, body), '_blank', 'noopener,noreferrer');
   };
 
   // Filtered projects
@@ -605,9 +603,9 @@ export default function App() {
     }
     const subject = formState.subject || `Message from ${formState.name} via Portfolio`;
     const body = `Hi Daiyan,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`;
-    openMailto(subject, body);
+    openGmailCompose(subject, body);
     setFormSubmitted(true);
-    showToast('Opened email composer!');
+    showToast('Opened Gmail Compose in new tab!');
   };
 
   const closeMenu = () => setMenuOpen(false);
@@ -712,7 +710,9 @@ export default function App() {
               </button>
               <a
                 className="btn-secondary"
-                href="mailto:daiyan63633@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Mail size={16} />
                 <span>Contact Daiyan</span>
@@ -788,7 +788,9 @@ export default function App() {
                 <Linkedin size={16} />
               </a>
               <a
-                href="mailto:daiyan63633@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="social-btn"
                 aria-label="Email"
               >
@@ -1031,9 +1033,11 @@ export default function App() {
                   <div className="hero-social-links">
                     <a
                       className="social-icon-btn"
-                      href="mailto:daiyan63633@gmail.com"
-                      aria-label="Send email"
-                      title="Send email to Daiyan"
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Compose email in Gmail"
+                      title="Open Gmail Compose to email Daiyan"
                     >
                       <Mail size={16} />
                     </a>
@@ -1461,8 +1465,10 @@ export default function App() {
                       <div className="method-title">Direct Email (Gmail)</div>
                       <a
                         className="method-value"
-                        href="mailto:daiyan63633@gmail.com"
-                        title="Click to send an email"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Click to open Gmail Compose"
                       >
                         daiyan63633@gmail.com <ArrowUpRight size={13} style={{ display: 'inline', verticalAlign: 'middle' }} />
                       </a>
@@ -1648,11 +1654,13 @@ export default function App() {
                 <Linkedin size={15} />
               </a>
               <a
-                href="mailto:daiyan63633@gmail.com"
-                aria-label="Email"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email (Compose in Gmail)"
                 className="social-icon-btn"
                 style={{ width: '34px', height: '34px' }}
-                title="Send email"
+                title="Compose email in Gmail"
               >
                 <Mail size={15} />
               </a>
@@ -1792,9 +1800,11 @@ export default function App() {
                 <p style={{ margin: '4px 0 0', fontSize: '12px', color: 'var(--text-muted)' }}>
                   Mysore, Karnataka, India · +91 63633 09248 ·{' '}
                   <a
-                    href="mailto:daiyan63633@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{ color: 'inherit', textDecoration: 'underline' }}
-                    title="Send email to Daiyan"
+                    title="Open Gmail Compose"
                   >
                     daiyan63633@gmail.com
                   </a>
