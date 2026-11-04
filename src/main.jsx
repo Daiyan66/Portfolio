@@ -562,18 +562,6 @@ export default function App() {
     );
   };
 
-  // Helper to construct Gmail Compose URL (Option B: official clean fs=1 full compose)
-  const getGmailComposeUrl = (subject = '', body = '') => {
-    let url = `https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com`;
-    if (subject) url += `&su=${encodeURIComponent(subject)}`;
-    if (body) url += `&body=${encodeURIComponent(body)}`;
-    return url;
-  };
-
-  const openGmailCompose = (subject = '', body = '') => {
-    window.open(getGmailComposeUrl(subject, body), '_blank', 'noopener,noreferrer');
-  };
-
   // Filtered projects
   const filteredProjects = useMemo(() => {
     if (projectFilter === 'all') return PROJECTS;
@@ -595,17 +583,53 @@ export default function App() {
     })).filter((cat) => cat.skills.length > 0);
   }, [skillSearchQuery]);
 
+  // Open compact Gmail Compose popup window (Option 1)
+  const openGmailPopup = (options = {}) => {
+    const { subject = '', body = '' } = options;
+    const baseUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com';
+    const params = [];
+    if (subject) params.push(`su=${encodeURIComponent(subject)}`);
+    if (body) params.push(`body=${encodeURIComponent(body)}`);
+    const finalUrl = params.length ? `${baseUrl}&${params.join('&')}` : baseUrl;
+
+    const width = 680;
+    const height = 700;
+    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+    const screenWidth = window.innerWidth || document.documentElement.clientWidth || screen.width;
+    const screenHeight = window.innerHeight || document.documentElement.clientHeight || screen.height;
+
+    const left = Math.floor(screenWidth / 2 - width / 2) + dualScreenLeft;
+    const top = Math.floor(screenHeight / 2 - height / 2) + dualScreenTop;
+
+    try {
+      const popup = window.open(
+        finalUrl,
+        'GmailComposePopup',
+        `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no`
+      );
+      if (popup) {
+        popup.focus();
+        return;
+      }
+    } catch (e) {
+      // Fallback if browser popup blocker interferes
+    }
+    window.open(finalUrl, '_blank', 'noopener,noreferrer');
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) {
       showToast('Please fill out all required fields');
       return;
     }
-    const subject = formState.subject || `Message from ${formState.name} via Portfolio`;
-    const body = `Hi Daiyan,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`;
-    openGmailCompose(subject, body);
+    openGmailPopup({
+      subject: formState.subject || `Message from ${formState.name} via Portfolio`,
+      body: `Hi Daiyan,\n\n${formState.message}\n\nFrom: ${formState.name} (${formState.email})`
+    });
     setFormSubmitted(true);
-    showToast('Opened Gmail Compose in new tab!');
+    showToast('Opened Gmail Compose window!');
   };
 
   const closeMenu = () => setMenuOpen(false);
@@ -713,6 +737,10 @@ export default function App() {
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openGmailPopup();
+                }}
               >
                 <Mail size={16} />
                 <span>Contact Daiyan</span>
@@ -793,6 +821,10 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="social-btn"
                 aria-label="Email"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openGmailPopup();
+                }}
               >
                 <Mail size={16} />
               </a>
@@ -1038,6 +1070,10 @@ export default function App() {
                       rel="noopener noreferrer"
                       aria-label="Compose email in Gmail"
                       title="Open Gmail Compose to email Daiyan"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openGmailPopup();
+                      }}
                     >
                       <Mail size={16} />
                     </a>
@@ -1468,7 +1504,11 @@ export default function App() {
                         href="https://mail.google.com/mail/?view=cm&fs=1&to=daiyan63633@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        title="Click to open Gmail Compose"
+                        title="Click to open Gmail Compose window"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openGmailPopup();
+                        }}
                       >
                         daiyan63633@gmail.com <ArrowUpRight size={13} style={{ display: 'inline', verticalAlign: 'middle' }} />
                       </a>
@@ -1661,6 +1701,10 @@ export default function App() {
                 className="social-icon-btn"
                 style={{ width: '34px', height: '34px' }}
                 title="Compose email in Gmail"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openGmailPopup();
+                }}
               >
                 <Mail size={15} />
               </a>
@@ -1804,7 +1848,11 @@ export default function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: 'inherit', textDecoration: 'underline' }}
-                    title="Open Gmail Compose"
+                    title="Open Gmail Compose window"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openGmailPopup();
+                    }}
                   >
                     daiyan63633@gmail.com
                   </a>
