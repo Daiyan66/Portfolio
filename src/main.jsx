@@ -376,9 +376,9 @@ export default function App() {
   // Update document title dynamically based on route
   useEffect(() => {
     if (is404) {
-      document.title = '404 · Page Not Found — Mohammed Daiyan Portfolio';
+      document.title = '404 · Page Not Found — Mohammed Daiyan | Portfolio';
     } else {
-      document.title = 'Mohammed Daiyan Portfolio';
+      document.title = 'Mohammed Daiyan | Portfolio';
     }
   }, [is404]);
 

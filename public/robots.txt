@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-md-daiyan.vercel.app/sitemap.xml
 Sitemap: https://portfolio-md-daiyan-seven.vercel.app/sitemap.xml

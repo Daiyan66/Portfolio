@@ -1,19 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <style>
-    .badge-bg { fill: #0c1e28; }
-    .badge-stroke { stroke: #bef264; }
-    .letter-m { fill: #f8fafc; }
-    .letter-d { fill: #bef264; }
-    @media (prefers-color-scheme: light) {
-      .badge-bg { fill: #faf5ed; }
-      .badge-stroke { stroke: #b84f22; }
-      .letter-m { fill: #281911; }
-      .letter-d { fill: #b84f22; }
-    }
-  </style>
-  <rect width="64" height="64" rx="16" class="badge-bg"/>
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" class="badge-stroke" stroke-width="2.5"/>
-  <text x="32" y="34.5" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="31" letter-spacing="-1.5">
-    <tspan class="letter-m">M</tspan><tspan class="letter-d">D</tspan>
-  </text>
+  <defs>
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="purpleBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <!-- Sleek Dark Background -->
+  <rect width="64" height="64" rx="16" fill="#090d16"/>
+  <!-- Premium Purple Gradient Border -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#purpleBorder)" stroke-width="2.5"/>
+  <!-- Bold High-Contrast MD Letters -->
+  <text x="32" y="34.5" text-anchor="middle" dominant-baseline="central" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="31" letter-spacing="-1.5" fill="#ffffff">M<tspan fill="url(#purpleGradient)">D</tspan></text>
 </svg>
